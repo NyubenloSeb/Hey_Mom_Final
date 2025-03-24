@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+    android:id="@+id/overview"
+    android:title="Overview"
+    android:icon="@drawable/baseline_home_24"/>
+
+    <item
+        android:id="@+id/routine"
+        android:title="Routine"
+        android:icon="@drawable/routine"/>
+    <item
+        android:id="@+id/child_details"
+        android:title="Child Details"
+        android:icon="@drawable/child"/>
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/baseline_account_circle_24"/>
+
+
+</menu>
