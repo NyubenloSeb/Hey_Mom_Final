@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout"
     tools:context=".RoutineFragment"
     android:padding="16dp">
 
@@ -27,16 +28,41 @@
             android:layout_height="wrap_content"
             android:hint="Routine Name"
             android:inputType="text"/>
-
-        <EditText
-            android:id="@+id/etRoutineDescription"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Description"
-            android:inputType="textMultiLine"
-            android:minLines="3"/>
+            android:layout_marginTop="10dp"
+            android:text="Routine Type"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
+
+        <Spinner
+            android:id="@+id/Spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Which Kid?"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
+
+        <Spinner
+            android:id="@+id/child_spinner"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
 
         <TextView
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select Time"
@@ -52,7 +78,7 @@
             android:id="@+id/btnSubmitRoutine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Routine"
+            android:text="Add Routine"
             android:textColor="@android:color/white"
             android:layout_marginTop="12dp"/>
 

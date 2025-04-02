@@ -10,4 +10,20 @@
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="routine_items">
+        <item>----------------</item>
+        <item>Sleeping Routine</item>
+        <item>Feeding Routine</item>
+        <item>Diaper Routine</item>
+    </string-array>
+    <string-array name="kids_name">
+        <item>Tony</item>
+        <item>Owen</item>
+        <item>Anish</item>
+        <item>Ben</item>
+    </string-array>
+    <string-array name="gender_options">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>
