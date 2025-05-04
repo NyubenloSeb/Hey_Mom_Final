@@ -3,6 +3,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#691375</color>
+    <color name="purple1">#660066</color>
+    <color name="purple2">#800080</color>
+    <color name="purple3">#be29ec</color>
+    <color name="purple4">#d896ff</color>
+    <color name="purple5">#efbbff</color>
+
+
+
+
         <color name="light_blue">#ADD8E6</color>
         <color name="light_green">#90EE90</color>
         <color name="light_yellow">#FFFFE0</color>

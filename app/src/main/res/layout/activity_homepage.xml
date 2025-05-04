@@ -23,6 +23,9 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="0dp"
+            app:itemIconTint="@color/purple5"
+            app:itemTextColor="@color/purple5"
+            android:background="@color/purple1"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

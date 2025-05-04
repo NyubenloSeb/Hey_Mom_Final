@@ -73,32 +73,48 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.061">
 
-            <EditText
-                android:id="@+id/username"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/rounded_corner"
-                android:gravity="center"
+                app:boxStrokeColor="@color/purple"
                 android:hint="Username or Email"
-                android:drawableStart="@drawable/mail"
-                android:inputType="text"
-                android:padding="12dp"
-                android:textColorHint="#000000"
-                android:textSize="14sp" />
+                android:textColorHint="@color/purple"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <EditText
-                android:id="@+id/password"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/mail"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textSize="14sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_corner"
-                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                app:boxStrokeColor="@color/purple"
                 android:hint="Password"
-                android:drawableStart="@drawable/lock"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColorHint="#000000"
-                android:textSize="14sp" />
+                android:textColorHint="@color/purple"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/lock"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+
+                    android:textSize="14sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <Button
                 android:id="@+id/login_button"
@@ -153,7 +169,7 @@
             android:text="Dont have an account?"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/create"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.84"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.927" />
