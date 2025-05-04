@@ -1,0 +1,42 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <group android:id="@+id/grp1">
+        <item
+            android:title="Services"
+            android:enabled="false"
+            />
+        <item
+            android:icon="@drawable/location"
+            android:id="@+id/location"
+            android:title="Location" />
+        <item
+            android:id="@+id/vaccine"
+            android:icon="@drawable/med"
+            android:title="Vaccination Chart" />
+        <item
+            android:icon="@drawable/note_edit"
+            android:title="Statistics" />
+    </group>
+
+    <group android:id="@+id/grp2" >
+        <item
+            android:title="Support"
+            android:enabled="false"
+            />
+        <item
+            android:icon="@drawable/setting"
+            android:title="Setting" />
+        <item
+            android:icon="@drawable/baseline_emergency_24"
+            android:title="Emergency Number" />
+        <item
+            android:icon="@drawable/customer_support"
+            android:title="Customer Support" />
+    </group>
+
+
+
+</menu>
