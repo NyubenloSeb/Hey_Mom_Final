@@ -1,88 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
-
-    <LinearLayout
-        android:layout_marginTop="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBarRoutine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <!-- Child Name Field -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Child Name"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
-
-        <EditText
-            android:id="@+id/etChildName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Child Name"
-            android:inputType="text"/>
-
-
-        <!-- Child Gender Field -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gender"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp"/>
-
-        <Spinner
-            android:id="@+id/spinnerGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/gender_options"/>
-
-        <!-- Child Birthdate Field with DatePicker -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Child Birthdate"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp"/>
-
-        <!-- Date Picker as clickable TextView -->
-        <TextView
-            android:id="@+id/tvSelectBirthdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select Birthdate"
-            android:textColor="@android:color/holo_blue_dark"
-            android:paddingBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingTop="8dp"/>
-
-        <!-- TextView to display the selected birthdate -->
-        <TextView
-            android:id="@+id/tvSelectedBirthdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No date selected"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:paddingTop="8dp"/>
-
-        <!-- Submit Button -->
-        <Button
-            android:id="@+id/btnSubmitChildDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:layout_marginTop="16dp"/>
-
-    </LinearLayout>
-</ScrollView>
+        android:paddingTop="40dp"
+        android:gravity="center"
+        app:title="Child Details"
+        app:titleTextColor="@color/black" />
+    <ListView
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/listView"
+        android:dividerHeight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

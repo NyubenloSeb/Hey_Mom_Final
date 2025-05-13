@@ -16,11 +16,6 @@ class ProfileFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        val mapbutton = view.findViewById<Button>(R.id.map)
-        mapbutton.setOnClickListener {
-            val intent = Intent(activity, LocationActivity::class.java)
-            startActivity(intent)
-        }
 
 
         return view

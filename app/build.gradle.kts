@@ -49,12 +49,16 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.filament.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation ("com.google.android.gms:play-services-maps:19.1.0")
-    implementation ("com.google.android.gms:play-services-location:21.3.0")
-    implementation ("androidx.viewpager2:viewpager2:1.1.0")
+    implementation (libs.play.services.maps)
+    implementation (libs.play.services.location)
+    implementation (libs.androidx.viewpager2)
+    implementation (libs.androidx.navigation.fragment.ktx.v270)
+    implementation (libs.androidx.navigation.ui.ktx.v270)
+
     implementation (libs.androidx.cardview)
 
 
