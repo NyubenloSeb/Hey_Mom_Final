@@ -10,13 +10,17 @@
         android:id="@+id/topAppBarRoutine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="40dp"
+        android:paddingTop="50dp"
         android:gravity="center"
+        android:paddingBottom="10dp"
         app:title="Child Details"
-        app:titleTextColor="@color/black" />
+        android:background="@color/purple2"
+        app:titleTextColor="@color/white"
+        app:titleTextAppearance="@style/ToolbarTitleBold" />
+
     <ListView
-        android:padding="10dp"
-        android:layout_marginTop="30dp"
+        android:padding="5dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/listView"
         android:dividerHeight="20dp"
         android:layout_width="match_parent"

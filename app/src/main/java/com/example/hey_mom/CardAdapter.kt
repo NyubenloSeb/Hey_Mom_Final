@@ -1,29 +1,19 @@
 package com.example.hey_mom
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class CardAdapter(private val images: List<Int>, private val titles: List<String>) :
-    RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+class CardFragmentAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
-    class CardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView = view.findViewById(R.id.cardImage)
-    }
+    override fun getItemCount(): Int = Int.MAX_VALUE
 
-    // Return a large number to create infinite scrolling
-    override fun getItemCount(): Int = Int.MAX_VALUE // Makes the list appear infinite
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
-        return CardViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val actualPosition = position % images.size // Ensure the images repeat
-        holder.image.setImageResource(images[actualPosition])
+    override fun createFragment(position: Int): Fragment {
+        return when (position % 3) {
+            0 -> WeatherFragment()
+            1 -> TemperatureFragment()
+            2 -> AirFragment()
+            else -> throw IllegalArgumentException("Invalid position")
+        }
     }
 }

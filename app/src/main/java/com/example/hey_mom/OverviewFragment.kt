@@ -2,6 +2,7 @@ package com.example.hey_mom
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -111,54 +112,52 @@ class OverviewFragment : Fragment() {
 
 
         //Card style infinite view
-        viewPager = view.findViewById(R.id.viewPager)
-
-        val imageList = listOf(
-            R.drawable.card1,
-            R.drawable.card2,
-            R.drawable.card3
-        )
-
-        val titleList = listOf(
-            "Recommended App",
-            "Top Rated",
-            "Editor's Pick"
-        )
 
         // Set the adapter
-        viewPager.adapter = CardAdapter(imageList, titleList)
+        val viewPager = view.findViewById<ViewPager2>(R.id.viewPager)
+        val adapter = CardFragmentAdapter(requireActivity())
+        viewPager.adapter = adapter
 
-        // Set the starting point to a large number to simulate infinite scroll
+// Infinite scroll start position
         val startPosition = Int.MAX_VALUE / 2
         viewPager.setCurrentItem(startPosition, false)
 
-        // Setting the page margin and offset for smooth transitions
-        val pageMargin = resources.getDimensionPixelOffset(R.dimen.pageMargin)
-        val pageOffset = resources.getDimensionPixelOffset(R.dimen.offset)
-
-        // ViewPager settings
+// Disable clipping to allow scaled pages to show outside bounds
+        viewPager.clipToPadding = false
+        viewPager.clipChildren = false
         viewPager.offscreenPageLimit = 3
 
-        // Apply scale and translation transformation for pop-up effect
+// Set padding so scaled pages are fully visible and spaced
+        val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin)  // e.g. 16dp
+        val pageOffsetPx = resources.getDimensionPixelOffset(R.dimen.pageOffset)  // e.g. 32dp
+        viewPager.setPadding(pageOffsetPx, 0, pageOffsetPx, 0)
+
+// Add margin between pages via ItemDecoration
+        val recyclerView = viewPager.getChildAt(0) as RecyclerView
+        recyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                outRect.right = pageMarginPx
+                outRect.left = pageMarginPx
+            }
+        })
+
+// PageTransformer for pop effect (scaling + fading + spacing)
         viewPager.setPageTransformer { page, position ->
-            val scaleFactor = 0.85f + (1 - abs(position)) * 0.15f  // Scale between 0.85 and 1
+            val scale = 0.85f + (1 - kotlin.math.abs(position)) * 0.15f
+            val alpha = 1 - kotlin.math.abs(position) * 0.5f
+            page.scaleX = scale
+            page.scaleY = scale
+            page.alpha = alpha
 
-            // Horizontal translation based on position
-            val translationX = position * -pageOffset
-
-            // Reduce the vertical translation to keep cards within the screen bounds
-            val translationY = 0f  // Prevents the card from moving vertically too much
-
-            // Ensure alpha does not go too low (keep it above 0.5 for visibility)
-            val alphaValue = 1 - abs(position) * 0.5f  // Reduce alpha but keep it visible
-
-            // Apply transformations
-            page.scaleX = scaleFactor
-            page.scaleY = scaleFactor
-            page.translationX = translationX
-            page.translationY = translationY
-            page.alpha = alphaValue  // Ensure the off-center cards are still visible
+            // Adjust horizontal translation to add spacing and avoid overlap
+            page.translationX = -pageMarginPx * position
         }
+
 
     }
 
