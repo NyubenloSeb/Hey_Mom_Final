@@ -26,21 +26,50 @@
             android:background="@color/purple2"
             app:titleTextColor="@color/white"
             app:titleTextAppearance="@style/ToolbarTitleBold" />
-
-        <!-- GridView instead of ScrollView -->
-        <GridView
-            android:layout_marginTop="20dp"
-            android:id="@+id/gridView"
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:numColumns="2"
-            android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"
+            android:layout_height="wrap_content"
+            android:text="Add New Routine"
+            />
+        <!-- GridView instead of ScrollView -->
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            />
 
-            android:clipToPadding="false"
-            android:stretchMode="columnWidth"
-            android:gravity="center" />
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="View All Routine"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/purple"
+            />
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Edit Routine"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/purple"
+            />
 
     </LinearLayout>
 
