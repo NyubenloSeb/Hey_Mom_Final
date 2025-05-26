@@ -60,6 +60,17 @@ dependencies {
     implementation (libs.androidx.navigation.ui.ktx.v270)
 
     implementation (libs.androidx.cardview)
+    // Retrofit & JSON parsing
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+// OkHttp logging (optional but useful)
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+// Kotlin Coroutines for async API calls
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
+
 
 
 }

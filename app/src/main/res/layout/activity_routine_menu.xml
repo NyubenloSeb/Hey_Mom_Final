@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvRoutineTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Baby Routines"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnFeedingRoutine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Feeding Routine"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnSleepRoutine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sleep Routine"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnDiaperRoutine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Diaper Change Routine"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnGrowthTracking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Growth Tracking"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnVaccineSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vaccine Schedule"/>
+
+    </LinearLayout>
+</ScrollView>

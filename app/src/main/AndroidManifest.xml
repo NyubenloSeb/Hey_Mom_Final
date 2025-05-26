@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,18 +12,58 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hey_Mom"
         tools:targetApi="31">
         <activity
-            android:name=".Location_Activity"
+            android:name=".ui.VaccineScheduleActivity"
             android:exported="false" />
         <activity
-            android:name=".Vaccine_Activity"
+            android:name=".ui.GrowthTrackingActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".ui.DiaperActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SleepActivity"
+            android:exported="false" />
+        <activity android:name=".ui.FeedingActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui.RoutineMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AddBabyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.BabyDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.adapters.VaccineAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ui.adapters.DiaperAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ui.adapters.SleepAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ui.adapters.FeedingAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ui.adapters.GrowthAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ui.adapters.BabyAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Vaccine_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,16 +72,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LocationActivity"
+            android:name=".ui.LocationActivity"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".ui.Signup"
             android:exported="false" />
         <activity
-            android:name=".Homepage"
+            android:name=".ui.Homepage"
             android:exported="true" />
         <activity
-            android:name=".Signin"
+            android:name=".ui.Signin"
             android:exported="true" />
     </application>
 

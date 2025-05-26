@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    android:orientation="vertical"
-    >
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBarRoutine"
-        android:layout_width="match_parent"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/add_baby_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="40dp"
-        android:gravity="center"
-        app:title="Child Details"
-        app:titleTextColor="@color/black" />
-    <ListView
-        android:padding="10dp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/listView"
-        android:dividerHeight="20dp"
+        android:text="Add Baby" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/baby_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:paddingTop="8dp"/>
 </LinearLayout>

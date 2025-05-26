@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/rounded_corner"
 
-    tools:context=".Routinedisplay">
+    tools:context=".ui.Routinedisplay">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
