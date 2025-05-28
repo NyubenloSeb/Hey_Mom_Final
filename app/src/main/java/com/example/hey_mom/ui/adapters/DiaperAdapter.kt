@@ -27,9 +27,9 @@ class DiaperAdapter(
 
     override fun onBindViewHolder(holder: DiaperViewHolder, position: Int) {
         val entry = items[position]
-        holder.time.text = "Time: ${entry.change_time}"
-        holder.condition.text = "Condition: ${entry.condition}"
-        holder.notes.text = "Notes: ${entry.notes ?: ""}"
+        holder.time.text = " ${entry.change_time}"
+        holder.condition.text = "${entry.condition}"
+        holder.notes.text = "${entry.notes ?: ""}"
 
         holder.itemView.setOnClickListener { onEdit(entry) }
     }

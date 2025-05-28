@@ -5,11 +5,6 @@
     android:id="@+id/overview"
     android:title="Overview"
     android:icon="@drawable/home"/>
-
-    <item
-        android:id="@+id/routine"
-        android:title="Routine"
-        android:icon="@drawable/routine"/>
     <item
         android:id="@+id/child_details"
         android:title="Child Details"

@@ -2,8 +2,11 @@ package com.example.hey_mom.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,58 +19,65 @@ import com.example.hey_mom.viewmodel.BabyViewModel
 import com.example.hey_mom.viewmodel.BabyViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class BabyDashboardActivity : AppCompatActivity() {
+class BabyDashboardFragment : Fragment() {
 
     private lateinit var viewModel: BabyViewModel
     private lateinit var babyAdapter: BabyAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var userId: String // Retrieved from SharedPreferences
+    private lateinit var userId: String
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_baby_dashboard)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        return inflater.inflate(R.layout.activity_baby_dashboard, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         // Get userId from SharedPreferences
-        userId = getSharedPreferences("HeyMomPrefs", MODE_PRIVATE)
+        userId = requireContext().getSharedPreferences("HeyMomPrefs", 0)
             .getString("user_id", "") ?: ""
 
         if (userId.isEmpty()) {
-            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
-            finish()
+            Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+            requireActivity().finish()
             return
         }
 
         // Setup RecyclerView
-        recyclerView = findViewById(R.id.recyclerBabies)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView = view.findViewById(R.id.recyclerBabies)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Initialize ApiService, Repository, and ViewModel using Factory
+        // Initialize ViewModel
         val apiService: ApiService = ApiClient.retrofit.create(ApiService::class.java)
         val repository = BabyRepository(apiService)
         val factory = BabyViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[BabyViewModel::class.java]
 
-        // Observe baby list and bind to RecyclerView
-        viewModel.babies.observe(this) { babyList ->
+        // Observe baby list
+        viewModel.babies.observe(viewLifecycleOwner) { babyList ->
             babyAdapter = BabyAdapter(babyList) { selectedBaby ->
-                val intent = Intent(this, RoutineMenuActivity::class.java)
+                val intent = Intent(requireContext(), RoutineMenuActivity::class.java)
                 intent.putExtra("baby_id", selectedBaby.baby_id.toString())
                 startActivity(intent)
             }
             recyclerView.adapter = babyAdapter
         }
 
-        // Observe status messages
-        viewModel.status.observe(this) {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        // Observe status
+        viewModel.status.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
-        // Fetch babies from backend
+        // Fetch babies
         viewModel.getBabies(userId.toInt())
 
-        // Handle FAB to add a new baby
-        findViewById<FloatingActionButton>(R.id.fabAddBaby).setOnClickListener {
-            startActivity(Intent(this, AddBabyActivity::class.java))
+        // FAB: Add baby
+        view.findViewById<FloatingActionButton>(R.id.fabAddBaby).setOnClickListener {
+            startActivity(Intent(requireContext(), AddBabyActivity::class.java))
         }
     }
 }

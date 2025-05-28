@@ -1,12 +1,12 @@
 package com.example.hey_mom.ui
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hey_mom.R
 import android.content.Intent
+import com.google.android.material.card.MaterialCardView
 
 class RoutineMenuActivity : AppCompatActivity() {
 
@@ -29,23 +29,24 @@ class RoutineMenuActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.tvRoutineTitle).text = "$babyName's Routines"
 
-        findViewById<Button>(R.id.btnFeedingRoutine).setOnClickListener {
+        // Updated to use MaterialCardView instead of Button
+        findViewById<MaterialCardView>(R.id.btnFeedingRoutine).setOnClickListener {
             startRoutineActivity(FeedingActivity::class.java)
         }
 
-        findViewById<Button>(R.id.btnSleepRoutine).setOnClickListener {
+        findViewById<MaterialCardView>(R.id.btnSleepRoutine).setOnClickListener {
             startRoutineActivity(SleepActivity::class.java)
         }
 
-        findViewById<Button>(R.id.btnDiaperRoutine).setOnClickListener {
+        findViewById<MaterialCardView>(R.id.btnDiaperRoutine).setOnClickListener {
             startRoutineActivity(DiaperActivity::class.java)
         }
 
-        findViewById<Button>(R.id.btnGrowthTracking).setOnClickListener {
+        findViewById<MaterialCardView>(R.id.btnGrowthTracking).setOnClickListener {
             startRoutineActivity(GrowthTrackingActivity::class.java)
         }
 
-        findViewById<Button>(R.id.btnVaccineSchedule).setOnClickListener {
+        findViewById<MaterialCardView>(R.id.btnVaccineSchedule).setOnClickListener {
             startRoutineActivity(VaccineScheduleActivity::class.java)
         }
     }

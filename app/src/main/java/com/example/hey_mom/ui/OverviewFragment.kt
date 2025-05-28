@@ -61,10 +61,6 @@ class OverviewFragment : Fragment() {
         profileRecycler.adapter = profileAdapter
         profileRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        // for display cards
-        childFragmentManager.beginTransaction()
-            .replace(R.id.display, Routinedisplay())
-            .commit()
 
         //for status bar
         val window = requireActivity().window

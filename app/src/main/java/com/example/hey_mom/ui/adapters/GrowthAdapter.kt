@@ -28,11 +28,11 @@ class GrowthAdapter(private val items: List<GrowthEntry>) :
 
     override fun onBindViewHolder(holder: GrowthViewHolder, position: Int) {
         val entry = items[position]
-        holder.date.text = "Date: ${entry.recorded_on}"
-        holder.weight.text = "Weight: ${entry.weight_kg} kg"
-        holder.height.text = "Height: ${entry.height_cm} cm"
-        holder.head.text = "Head Circumference: ${entry.head_circumference_cm} cm"
-        holder.notes.text = "Notes: ${entry.notes}"
+        holder.date.text = "${entry.recorded_on}"
+        holder.weight.text = "${entry.weight_kg} kg"
+        holder.height.text = "${entry.height_cm} cm"
+        holder.head.text = "${entry.head_circumference_cm} cm"
+        holder.notes.text = "${entry.notes}"
     }
 
     override fun getItemCount() = items.size

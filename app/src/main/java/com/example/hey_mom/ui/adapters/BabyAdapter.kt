@@ -28,9 +28,9 @@ class BabyAdapter(
 
     override fun onBindViewHolder(holder: BabyViewHolder, position: Int) {
         val baby = babies[position]
-        holder.name.text = "Name: ${baby.name}"
-        holder.dob.text = "DOB: ${baby.dob}"
-        holder.gender.text = "Gender: ${baby.gender}"
+        holder.name.text = "${baby.name}"
+        holder.dob.text = "${baby.dob}"
+        holder.gender.text = "${baby.gender}"
         holder.itemView.setOnClickListener { onClick(baby) }
     }
 

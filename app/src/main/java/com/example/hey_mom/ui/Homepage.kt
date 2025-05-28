@@ -21,11 +21,7 @@ class Homepage : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.overview -> replaceFragment(OverviewFragment())
-                R.id.routine -> replaceFragment(RoutineFragment())
-                R.id.child_details -> {
-                    val intent = Intent(this, BabyDashboardActivity::class.java)
-                    startActivity(intent)
-                }
+                R.id.child_details -> replaceFragment(BabyDashboardFragment())
                 R.id.profile -> replaceFragment(ProfileFragment())
             else ->{
             }

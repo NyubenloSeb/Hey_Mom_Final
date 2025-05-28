@@ -27,9 +27,9 @@ class SleepAdapter(
 
     override fun onBindViewHolder(holder: SleepViewHolder, position: Int) {
         val entry = items[position]
-        holder.start.text = "Start: ${entry.sleep_start}"
-        holder.end.text = "End: ${entry.sleep_end}"
-        holder.notes.text = "Notes: ${entry.notes ?: ""}"
+        holder.start.text = "${entry.sleep_start}"
+        holder.end.text = "${entry.sleep_end}"
+        holder.notes.text = "${entry.notes ?: ""}"
 
         holder.itemView.setOnClickListener { onEdit(entry) }
     }

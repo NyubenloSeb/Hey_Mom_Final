@@ -1,5 +1,6 @@
 package com.example.hey_mom.ui
 
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
@@ -18,6 +19,7 @@ import com.example.hey_mom.repository.SleepRepository
 import com.example.hey_mom.ui.adapters.SleepAdapter
 import com.example.hey_mom.viewmodel.SleepViewModel
 import com.example.hey_mom.viewmodel.SleepViewModelFactory
+import java.util.Calendar
 
 class SleepActivity : AppCompatActivity() {
 
@@ -27,6 +29,7 @@ class SleepActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sleep)
+
 
         babyId = intent.getStringExtra("baby_id") ?: ""
         val api = ApiClient.retrofit.create(ApiService::class.java)
@@ -47,9 +50,20 @@ class SleepActivity : AppCompatActivity() {
 
         viewModel.getSleepEntries(babyId.toInt())
 
+        val etStart = findViewById<EditText>(R.id.etSleepStart)
+        val etEnd = findViewById<EditText>(R.id.etSleepEnd)
+
+        etStart.setOnClickListener {
+            showTimePicker(etStart)
+        }
+
+        etEnd.setOnClickListener {
+            showTimePicker(etEnd)
+        }
+
         findViewById<Button>(R.id.btnAddSleep).setOnClickListener {
-            val start = findViewById<EditText>(R.id.etSleepStart).text.toString()
-            val end = findViewById<EditText>(R.id.etSleepEnd).text.toString()
+            val start = etStart.text.toString()
+            val end = etEnd.text.toString()
             val notes = findViewById<EditText>(R.id.etSleepNotes).text.toString()
 
             if (start.isEmpty() || end.isEmpty()) {
@@ -85,4 +99,21 @@ class SleepActivity : AppCompatActivity() {
             .setNegativeButton("Cancel", null)
             .show()
     }
+    private fun showTimePicker(targetEditText: EditText) {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialog = TimePickerDialog(
+            this,
+            { _, selectedHour, selectedMinute ->
+                val formattedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
+                targetEditText.setText(formattedTime)
+            },
+            hour, minute, false // false for 12-hour format, true for 24-hour
+        )
+        timePickerDialog.show()
+    }
+
+
 }
