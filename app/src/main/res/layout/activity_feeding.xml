@@ -52,7 +52,7 @@
                         android:id="@+id/etFeedingTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="yyyy-MM-dd HH:mm:ss"
+                        android:hint="HH:mm:ss"
                         android:textColor="@color/black"
                         android:inputType="datetime"
                         android:drawablePadding="12dp" />

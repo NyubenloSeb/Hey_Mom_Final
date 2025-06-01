@@ -15,23 +15,26 @@ import com.example.hey_mom.R
 import com.example.hey_mom.api.ApiClient
 import com.example.hey_mom.api.ApiService
 import com.example.hey_mom.api.models.SleepEntry
+import com.example.hey_mom.notifications.NotificationScheduler
 import com.example.hey_mom.repository.SleepRepository
 import com.example.hey_mom.ui.adapters.SleepAdapter
 import com.example.hey_mom.viewmodel.SleepViewModel
 import com.example.hey_mom.viewmodel.SleepViewModelFactory
-import java.util.Calendar
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SleepActivity : AppCompatActivity() {
 
     private lateinit var viewModel: SleepViewModel
     private lateinit var babyId: String
+    private var selectedCalendar: Calendar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sleep)
 
-
         babyId = intent.getStringExtra("baby_id") ?: ""
+
         val api = ApiClient.retrofit.create(ApiService::class.java)
         val factory = SleepViewModelFactory(SleepRepository(api))
         viewModel = ViewModelProvider(this, factory)[SleepViewModel::class.java]
@@ -45,33 +48,60 @@ class SleepActivity : AppCompatActivity() {
 
         viewModel.status.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            if (it == "success") viewModel.getSleepEntries(babyId.toInt())
+            if (it == "success") {
+                viewModel.getSleepEntries(babyId.toInt())
+                selectedCalendar?.let { calendar ->
+                    NotificationScheduler.scheduleOneTimeAlarm(
+                        context = this,
+                        id = Random().nextInt(10000),
+                        triggerAtMillis = calendar.timeInMillis,
+                        type = "Sleep"
+                    )
+                    Toast.makeText(this, "Sleep reminder scheduled", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         viewModel.getSleepEntries(babyId.toInt())
 
         val etStart = findViewById<EditText>(R.id.etSleepStart)
         val etEnd = findViewById<EditText>(R.id.etSleepEnd)
+        val etNotes = findViewById<EditText>(R.id.etSleepNotes)
 
-        etStart.setOnClickListener {
-            showTimePicker(etStart)
-        }
-
-        etEnd.setOnClickListener {
-            showTimePicker(etEnd)
-        }
+        etStart.setOnClickListener { showTimePicker(etStart) }
+        etEnd.setOnClickListener { showTimePicker(etEnd) }
 
         findViewById<Button>(R.id.btnAddSleep).setOnClickListener {
-            val start = etStart.text.toString()
-            val end = etEnd.text.toString()
-            val notes = findViewById<EditText>(R.id.etSleepNotes).text.toString()
+            val startText = etStart.text.toString()
+            val endText = etEnd.text.toString()
+            val notes = etNotes.text.toString()
 
-            if (start.isEmpty() || end.isEmpty()) {
+            if (startText.isEmpty() || endText.isEmpty()) {
                 Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            viewModel.addSleepEntry(babyId.toInt(), start, end, notes)
+            // Parse start time for notification
+            val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val parsedDate = sdf.parse(startText)
+
+            if (parsedDate != null) {
+                val timeOnly = Calendar.getInstance().apply { time = parsedDate }
+                selectedCalendar = Calendar.getInstance().apply {
+                    set(Calendar.HOUR_OF_DAY, timeOnly.get(Calendar.HOUR_OF_DAY))
+                    set(Calendar.MINUTE, timeOnly.get(Calendar.MINUTE))
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                    if (before(Calendar.getInstance())) {
+                        add(Calendar.DATE, 1)
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Invalid time format", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewModel.addSleepEntry(babyId.toInt(), startText, endText, notes)
         }
     }
 
@@ -99,6 +129,7 @@ class SleepActivity : AppCompatActivity() {
             .setNegativeButton("Cancel", null)
             .show()
     }
+
     private fun showTimePicker(targetEditText: EditText) {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
@@ -110,10 +141,8 @@ class SleepActivity : AppCompatActivity() {
                 val formattedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
                 targetEditText.setText(formattedTime)
             },
-            hour, minute, false // false for 12-hour format, true for 24-hour
+            hour, minute, true
         )
         timePickerDialog.show()
     }
-
-
 }

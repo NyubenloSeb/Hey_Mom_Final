@@ -168,6 +168,12 @@ interface ApiService {
     ): Response<ApiResponse>
 
     @FormUrlEncoded
+    @POST("vaccine/assign_all_vaccines_to_baby.php")
+    suspend fun assignAllVaccinesToBaby(
+        @Field("baby_id") babyId: Int
+    ): Response<ApiResponse>
+
+    @FormUrlEncoded
     @POST("vaccine/get_baby_vaccines.php")
     suspend fun getBabyVaccines(
         @Field("baby_id") babyId: Int

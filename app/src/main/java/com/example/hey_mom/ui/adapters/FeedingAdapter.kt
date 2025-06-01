@@ -29,7 +29,7 @@ class FeedingAdapter(
     override fun onBindViewHolder(holder: FeedingViewHolder, position: Int) {
         val entry = items[position]
         holder.time.text = "${entry.feeding_time}"
-        holder.type.text = "${entry.feeding_type_notes}"
+        holder.type.text = "${entry.feeding_type}"
         holder.quantity.text = "${entry.quantity_ml} ml"
         holder.notes.text = "${entry.notes ?: "None"}"
 

@@ -1,10 +1,9 @@
 package com.example.hey_mom.ui
 
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -14,15 +13,19 @@ import com.example.hey_mom.R
 import com.example.hey_mom.api.ApiClient
 import com.example.hey_mom.api.ApiService
 import com.example.hey_mom.api.models.DiaperChange
+import com.example.hey_mom.notifications.NotificationScheduler
 import com.example.hey_mom.repository.DiaperRepository
 import com.example.hey_mom.ui.adapters.DiaperAdapter
 import com.example.hey_mom.viewmodel.DiaperViewModel
 import com.example.hey_mom.viewmodel.DiaperViewModelFactory
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DiaperActivity : AppCompatActivity() {
 
     private lateinit var viewModel: DiaperViewModel
     private lateinit var babyId: String
+    private var selectedCalendar: Calendar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,22 +45,65 @@ class DiaperActivity : AppCompatActivity() {
 
         viewModel.status.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            if (it == "success") viewModel.getDiaperEntries(babyId.toInt())
+            if (it == "success") {
+                viewModel.getDiaperEntries(babyId.toInt())
+                selectedCalendar?.let { calendar ->
+                    NotificationScheduler.scheduleOneTimeAlarm(
+                        context = this,
+                        id = Random().nextInt(10000),
+                        triggerAtMillis = calendar.timeInMillis,
+                        type = "Diaper"
+                    )
+                    Toast.makeText(this, "Diaper reminder scheduled", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         viewModel.getDiaperEntries(babyId.toInt())
 
-        findViewById<Button>(R.id.btnAddDiaper).setOnClickListener {
-            val time = findViewById<EditText>(R.id.etDiaperTime).text.toString()
-            val condition = findViewById<EditText>(R.id.etCondition).text.toString()
-            val notes = findViewById<EditText>(R.id.etDiaperNotes).text.toString()
+        val timeInput = findViewById<EditText>(R.id.etDiaperTime)
+        val conditionInput = findViewById<EditText>(R.id.etCondition)
+        val notesInput = findViewById<EditText>(R.id.etDiaperNotes)
 
-            if (time.isEmpty() || condition.isEmpty()) {
+        findViewById<Button>(R.id.btnAddDiaper).setOnClickListener {
+            val timeText = timeInput.text.toString().trim()
+            val condition = conditionInput.text.toString().trim()
+            val notes = notesInput.text.toString()
+
+            if (timeText.isEmpty() || condition.isEmpty()) {
                 Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            viewModel.addDiaperEntry(babyId.toInt(), time, condition, notes)
+            val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val parsedDate = sdf.parse(timeText)
+
+            if (parsedDate != null) {
+                val timeOnly = Calendar.getInstance().apply { time = parsedDate }
+                selectedCalendar = Calendar.getInstance().apply {
+                    set(Calendar.HOUR_OF_DAY, timeOnly.get(Calendar.HOUR_OF_DAY))
+                    set(Calendar.MINUTE, timeOnly.get(Calendar.MINUTE))
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                    if (before(Calendar.getInstance())) {
+                        add(Calendar.DATE, 1)
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Invalid time format", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewModel.addDiaperEntry(babyId.toInt(), timeText, condition, notes)
+        }
+
+        // Show time picker when clicking on time field
+        timeInput.setOnClickListener {
+            val now = Calendar.getInstance()
+            TimePickerDialog(this, { _, hour, minute ->
+                val formattedTime = String.format("%02d:%02d", hour, minute)
+                timeInput.setText(formattedTime)
+            }, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), true).show()
         }
     }
 
@@ -86,4 +132,3 @@ class DiaperActivity : AppCompatActivity() {
             .show()
     }
 }
-

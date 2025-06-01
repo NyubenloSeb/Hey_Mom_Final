@@ -19,11 +19,31 @@ class BabyViewModel(private val repo: BabyRepository) : ViewModel() {
     }
 
     fun addBaby(baby: Baby, userId: Int, relation: String) = viewModelScope.launch {
-        when (val result = repo.addBaby(baby, userId, relation)) {
-            is Result.Success -> status.postValue(result.data.status)
-            is Result.Error -> status.postValue(result.message)
+        when (val addResult = repo.addBaby(baby, userId, relation)) {
+            is Result.Success -> {
+                status.postValue(addResult.data.status)
+
+                if (addResult.data.status.equals("success", ignoreCase = true)) {
+                    // Fetch babies to get the new baby's ID
+                    when (val babiesResult = repo.getBabies(userId)) {
+                        is Result.Success -> {
+                            val newBaby = babiesResult.data.maxByOrNull { it.baby_id }
+                            newBaby?.let {
+                                // Assign all vaccines to this baby
+                                when (val assignResult = repo.assignAllVaccines(it.baby_id)) {
+                                    is Result.Success -> status.postValue("Vaccines assigned successfully")
+                                    is Result.Error -> status.postValue(assignResult.message)
+                                }
+                            }
+                        }
+                        is Result.Error -> status.postValue(babiesResult.message)
+                    }
+                }
+            }
+            is Result.Error -> status.postValue(addResult.message)
         }
     }
+
 
     fun updateBaby(baby: Baby) = viewModelScope.launch {
         when (val result = repo.updateBaby(baby)) {

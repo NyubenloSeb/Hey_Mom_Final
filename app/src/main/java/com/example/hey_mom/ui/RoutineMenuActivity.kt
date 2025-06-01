@@ -12,6 +12,8 @@ class RoutineMenuActivity : AppCompatActivity() {
 
     private lateinit var babyId: String
     private lateinit var babyName: String
+    private lateinit var babyDob: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,7 @@ class RoutineMenuActivity : AppCompatActivity() {
 
         // Optional: Set baby name if passed
         babyName = intent.getStringExtra("baby_name") ?: "Baby"
+        babyDob = intent.getStringExtra("baby_dob") ?: ""
 
         findViewById<TextView>(R.id.tvRoutineTitle).text = "$babyName's Routines"
 
@@ -54,6 +57,7 @@ class RoutineMenuActivity : AppCompatActivity() {
     private fun startRoutineActivity(clazz: Class<*>) {
         val intent = Intent(this, clazz)
         intent.putExtra("baby_id", babyId)
+        intent.putExtra("baby_dob", babyDob)
         startActivity(intent)
     }
 }

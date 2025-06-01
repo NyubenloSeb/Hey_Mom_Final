@@ -44,4 +44,13 @@ class BabyRepository(private val api: ApiService) {
             Result.Error("Update Exception: ${e.localizedMessage}")
         }
     }
+    suspend fun assignAllVaccines(babyId: Int): Result<ApiResponse> {
+        return try {
+            val response = api.assignAllVaccinesToBaby(babyId)
+            if (response.isSuccessful) Result.Success(response.body()!!)
+            else Result.Error("Assign vaccines failed: ${response.message()}")
+        } catch (e: Exception) {
+            Result.Error("Assign vaccines exception: ${e.localizedMessage}")
+        }
+    }
 }

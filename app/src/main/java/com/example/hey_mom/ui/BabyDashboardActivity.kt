@@ -62,6 +62,8 @@ class BabyDashboardFragment : Fragment() {
             babyAdapter = BabyAdapter(babyList) { selectedBaby ->
                 val intent = Intent(requireContext(), RoutineMenuActivity::class.java)
                 intent.putExtra("baby_id", selectedBaby.baby_id.toString())
+                intent.putExtra("baby_name", selectedBaby.name)
+                intent.putExtra("baby_dob", selectedBaby.dob)
                 startActivity(intent)
             }
             recyclerView.adapter = babyAdapter

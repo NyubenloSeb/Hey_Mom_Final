@@ -31,7 +31,7 @@ class VaccineAdapter(
         val item = items[position]
         holder.name.text = item.vaccine_name
         holder.status.text = "Status: ${item.status}"
-        holder.due.text = "Recommended Age: ${item.recommended_age_weeks} weeks"
+        holder.due.text = "Recommended Age: ${item.recommended_weeks} weeks"
         holder.btnDone.visibility = if (item.status == "Pending") View.VISIBLE else View.GONE
 
         holder.btnDone.setOnClickListener { onMarkCompleted(item) }
