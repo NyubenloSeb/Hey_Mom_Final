@@ -7,14 +7,24 @@
     android:background="@android:color/white">
 
     <!-- App Bar -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="bottom"
-        android:background="@color/purple2"
-        app:title="Feeding Routine"
-        app:titleTextAppearance="@style/ToolbarTitleBoldLarge" />
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        style="@style/Widget.Material3.AppBarLayout">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Feeding Routine"
+            android:background="@color/purple2"
+            app:titleTextAppearance="@style/ToolbarTitleBoldLarge"
+            app:titleTextColor="@color/white"
+            style="@style/Widget.Material3.Toolbar" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Scrollable Content Container -->
     <androidx.core.widget.NestedScrollView
@@ -53,8 +63,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="HH:mm:ss"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:inputType="none"
                         android:textColor="@color/black"
-                        android:inputType="datetime"
                         android:drawablePadding="12dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>

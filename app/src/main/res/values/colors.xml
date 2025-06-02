@@ -20,6 +20,15 @@
     <color name="fab_primary">#FF9800</color>
     <color name="icon_primary">#FF9800</color>
     <color name="ripple_light">#FFCC80</color>
+    <!-- Weather Background Colors -->
+    <color name="sunny_background">#FFE082</color>
+    <color name="cloudy_background">#B0BEC5</color>
+    <color name="rainy_background">#81C784</color>
+    <color name="default_background">#E3F2FD</color>
+
+    <!-- Text Colors -->
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
 
 
 

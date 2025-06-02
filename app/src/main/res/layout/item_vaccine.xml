@@ -1,39 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="0dp"
+    style="@style/Widget.Material3.CardView.Elevated">
 
-    <TextView
-        android:id="@+id/tvVaccineName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
+        android:background="@color/white2"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:textStyle="bold"  />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:id="@+id/tvVaccineStatus" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:id="@+id/tvDueDate" />
-    <Button
-        android:id="@+id/btnMarkDone"
-        android:text="Mark as Done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
-</LinearLayout>
+        android:padding="24dp">
+
+        <!-- Vaccine Name with Material 3 Typography -->
+        <TextView
+            android:id="@+id/tvVaccineName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            android:text="Vaccine" />
+
+        <!-- Status with Material 3 Chip-like appearance -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/tvVaccineStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="Pending"
+            android:textColor="@color/black"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            android:background="@drawable/stat_background"
+            app:chipStrokeWidth="0dp"
+            style="@style/Widget.Material3.Chip.Filter" />
+
+        <!-- Due Date with improved styling -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/date"
+                android:contentDescription="Schedule icon"
+                app:tint="@color/purple2" />
+
+            <TextView
+                android:id="@+id/tvDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="@color/black"
+                android:text="Due: March 15, 2025" />
+
+        </LinearLayout>
+
+        <!-- Material 3 Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMarkDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mark as Complete"
+            android:textColor="@color/black"
+            android:background="@drawable/stat_background"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            app:iconGravity="textStart"
+            app:cornerRadius="12dp"
+            style="@style/Widget.Material3.Button.TonalButton" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

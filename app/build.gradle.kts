@@ -70,7 +70,16 @@ dependencies {
 // Kotlin Coroutines for async API calls
     implementation(libs.kotlinx.coroutines.android)
 
+// Retrofit for API calls
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
 
+    // Google Play Services for Location
+    implementation (libs.play.services.location.v2101)
+
+    // Lifecycle components for coroutines
+    implementation (libs.androidx.lifecycle.runtime.ktx)
+    implementation (libs.kotlinx.coroutines.android.v164)
 
 
 }

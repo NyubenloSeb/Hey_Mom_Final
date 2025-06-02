@@ -7,14 +7,24 @@
     android:background="@color/background_light">
 
     <!-- Toolbar -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="bottom"
-        android:background="@color/purple2"
-        app:title="Sleep Routine"
-        app:titleTextAppearance="@style/ToolbarTitleBoldLarge" />
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        style="@style/Widget.Material3.AppBarLayout">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Sleep Routine"
+            android:background="@color/purple2"
+            app:titleTextAppearance="@style/ToolbarTitleBoldLarge"
+            app:titleTextColor="@color/white"
+            style="@style/Widget.Material3.Toolbar" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Scrollable Content -->
     <ScrollView

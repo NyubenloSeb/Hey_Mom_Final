@@ -9,16 +9,21 @@
     <!-- AppBar Layout -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        style="@style/Widget.Material3.AppBarLayout">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/toolbar"
+            android:paddingTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="bottom"
-            android:background="@color/purple2"
+            android:layout_height="?attr/actionBarSize"
             app:title="Diaper Routine"
-            app:titleTextAppearance="@style/ToolbarTitleBoldLarge" />
+            android:background="@color/purple2"
+            app:titleTextAppearance="@style/ToolbarTitleBoldLarge"
+            app:titleTextColor="@color/white"
+            style="@style/Widget.Material3.Toolbar" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Main Content -->
@@ -132,7 +137,9 @@
                             android:textColor="@color/black"
                             android:layout_height="wrap_content"
                             android:hint="Change Time (yyyy-MM-dd HH:mm:ss)"
-                            android:inputType="datetime"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:inputType="none"
                             android:textSize="14sp"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
