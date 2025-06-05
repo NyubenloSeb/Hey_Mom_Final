@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,41 +16,40 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.example.hey_mom.R
 import com.example.hey_mom.api.ApiClient
 import com.example.hey_mom.api.ApiService
-import com.example.hey_mom.api.models.FeedingEntry
 import com.example.hey_mom.api.models.DiaperChange
+import com.example.hey_mom.api.models.FeedingEntry
 import com.example.hey_mom.api.models.SleepEntry
 import com.example.hey_mom.notifications.NotificationScheduler
 import com.example.hey_mom.repository.BabyRepository
-import com.example.hey_mom.repository.FeedingRepository
 import com.example.hey_mom.repository.DiaperRepository
+import com.example.hey_mom.repository.FeedingRepository
 import com.example.hey_mom.repository.SleepRepository
-import com.example.hey_mom.ui.adapters.FeedingAdapter
 import com.example.hey_mom.ui.adapters.DiaperAdapter
-import com.example.hey_mom.ui.adapters.SleepAdapter
+import com.example.hey_mom.ui.adapters.FeedingAdapter
 import com.example.hey_mom.ui.adapters.ProfileAdapter
+import com.example.hey_mom.ui.adapters.SleepAdapter
 import com.example.hey_mom.viewmodel.BabyViewModel
 import com.example.hey_mom.viewmodel.BabyViewModelFactory
-import com.example.hey_mom.viewmodel.FeedingViewModel
-import com.example.hey_mom.viewmodel.FeedingViewModelFactory
 import com.example.hey_mom.viewmodel.DiaperViewModel
 import com.example.hey_mom.viewmodel.DiaperViewModelFactory
+import com.example.hey_mom.viewmodel.FeedingViewModel
+import com.example.hey_mom.viewmodel.FeedingViewModelFactory
 import com.example.hey_mom.viewmodel.SleepViewModel
 import com.example.hey_mom.viewmodel.SleepViewModelFactory
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
-import java.util.*
-import kotlin.math.abs
+import java.util.Calendar
+import java.util.Random
 
 class OverviewFragment : Fragment() {
 
-    private lateinit var viewPager: ViewPager2
     private lateinit var babyViewModel: BabyViewModel
     private lateinit var feedingViewModel: FeedingViewModel
     private lateinit var diaperViewModel: DiaperViewModel
@@ -91,7 +89,6 @@ class OverviewFragment : Fragment() {
         setupObservers()
         setupStatusBar()
         setupDrawer(view)
-        setupViewPager(view)
 
         // Fetch babies initially
         babyViewModel.getBabies(userId.toInt())
@@ -395,62 +392,15 @@ class OverviewFragment : Fragment() {
                         val intent = Intent(requireContext(), Vaccine_Activity::class.java)
                         startActivity(intent)
                     }
-                    R.id.location -> {
-                        val intent = Intent(requireContext(), LocationActivity::class.java)
-                        startActivity(intent)
-                    }
+
                 }
                 drawerLayout.closeDrawer(GravityCompat.START)
                 true
             }
         }
 
-        private fun setupViewPager(view: View) {
-            viewPager = view.findViewById(R.id.viewPager)
 
-            val imageList = listOf(
-                R.drawable.card1,
-                R.drawable.card2,
-                R.drawable.card3
-            )
-
-            val titleList = listOf(
-                "Recommended App",
-                "Top Rated",
-                "Editor's Pick"
-            )
-
-            // Set the adapter
-            viewPager.adapter = CardAdapter(imageList, titleList)
-
-            // Set the starting point to a large number to simulate infinite scroll
-            val startPosition = Int.MAX_VALUE / 2
-            viewPager.setCurrentItem(startPosition, false)
-
-            // Setting the page margin and offset for smooth transitions
-            val pageMargin = resources.getDimensionPixelOffset(R.dimen.pageMargin)
-            val pageOffset = resources.getDimensionPixelOffset(R.dimen.offset)
-
-            // ViewPager settings
-            viewPager.offscreenPageLimit = 3
-
-            // Apply scale and translation transformation for pop-up effect
-            viewPager.setPageTransformer { page, position ->
-                val scaleFactor = 0.85f + (1 - abs(position)) * 0.15f
-
-                val translationX = position * -pageOffset
-                val translationY = 0f
-                val alphaValue = 1 - abs(position) * 0.5f
-
-                page.scaleX = scaleFactor
-                page.scaleY = scaleFactor
-                page.translationX = translationX
-                page.translationY = translationY
-                page.alpha = alphaValue
-            }
-        }
-
-        private fun setLightStatusBar(window: Window, isLight: Boolean) {
+    private fun setLightStatusBar(window: Window, isLight: Boolean) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 val controller = window.insetsController
                 if (controller != null) {

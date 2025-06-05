@@ -6,6 +6,10 @@
     android:title="Overview"
     android:icon="@drawable/home"/>
     <item
+        android:id="@+id/weather"
+        android:title="Weather"
+        android:icon="@drawable/sunny"/>
+    <item
         android:id="@+id/child_details"
         android:title="Child Details"
         android:icon="@drawable/child"/>

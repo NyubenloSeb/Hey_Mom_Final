@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,7 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hey_Mom"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.Weather"
+            android:exported="false" />
+
         <receiver android:name=".notifications.AlarmReceiver" />
+
         <activity
             android:name=".ui.VaccineScheduleActivity"
             android:exported="false" />
@@ -32,9 +36,9 @@
         <activity
             android:name=".ui.SleepActivity"
             android:exported="false" />
-        <activity android:name=".ui.FeedingActivity"
-            android:exported="false"/>
-
+        <activity
+            android:name=".ui.FeedingActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.RoutineMenuActivity"
             android:exported="false" />

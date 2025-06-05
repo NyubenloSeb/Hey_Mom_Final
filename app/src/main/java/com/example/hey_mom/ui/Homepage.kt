@@ -23,6 +23,8 @@ class Homepage : AppCompatActivity() {
                 R.id.overview -> replaceFragment(OverviewFragment())
                 R.id.child_details -> replaceFragment(BabyDashboardFragment())
                 R.id.profile -> replaceFragment(ProfileFragment())
+                R.id.weather->replaceFragment(WeatherFragment())
+
             else ->{
             }
             }

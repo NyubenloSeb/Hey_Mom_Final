@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Sun Rays -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M6.76,4.84l-1.8,-1.79c-0.41,-0.41 -1.08,-0.41 -1.49,0c-0.41,0.41 -0.41,1.08 0,1.49l1.79,1.8c0.41,0.41 1.08,0.41 1.49,0C6.17,5.92 6.17,5.25 6.76,4.84z"/>
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M4,10.5H1.5c-0.83,0 -1.5,0.67 -1.5,1.5s0.67,1.5 1.5,1.5H4c0.83,0 1.5,-0.67 1.5,-1.5S4.83,10.5 4,10.5z"/>
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M10,0.5c0,-0.83 -0.67,-1.5 -1.5,-1.5S7,0.17 7,1.5v2.5c0,0.83 0.67,1.5 1.5,1.5S10,4.33 10,3.5V0.5z"/>
+
+    <!-- Sun Core -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M10,6a4,4 0 1,0 0,8a4,4 0 1,0 0,-8z"/>
+
+    <!-- Cloud Front -->
+    <path
+        android:fillColor="#B0C4DE"
+        android:pathData="M17,16c0.88,0 1.67,0.39 2.22,1.01C20.91,16.58 22,17.64 22,19c0,1.38 -1.12,2.5 -2.5,2.5H9.5C7.57,21.5 6,19.93 6,18s1.57,-3.5 3.5,-3.5c0.23,0 0.45,0.03 0.66,0.07C11.02,13.36 12.43,13 14,13c1.93,0 3.57,1.57 3.57,3.5c0,0.17 -0.01,0.33 -0.03,0.5C17.7,17 17.85,16 17,16z"/>
+</vector>
