@@ -248,7 +248,7 @@ class WeatherFragment : Fragment() {
             feelsLike in 17..20 -> "👕 Light layers recommended. A light blanket may be needed."
             feelsLike in 21..26 -> "👶 Comfortable temperature. Light clothing is perfect."
             feelsLike in 27..30 -> "🌡️ Keep baby cool. Light, breathable fabrics recommended."
-            else -> "❄️ Very hot! Keep baby in air-conditioned space. Plenty of fluids needed."
+            else -> "❄️ Very hot! Keep baby in cool space. Plenty of fluids needed."
         }
 
         // Humidity and comfort recommendations

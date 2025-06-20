@@ -16,9 +16,6 @@
             android:id="@+id/vaccine"
             android:icon="@drawable/med"
             android:title="Vaccination Chart" />
-        <item
-            android:icon="@drawable/note_edit"
-            android:title="Statistics" />
     </group>
 
     <group android:id="@+id/grp2" >
@@ -27,14 +24,9 @@
             android:enabled="false"
             />
         <item
-            android:icon="@drawable/setting"
-            android:title="Setting" />
-        <item
+            android:id="@+id/emergency"
             android:icon="@drawable/baseline_emergency_24"
             android:title="Emergency Number" />
-        <item
-            android:icon="@drawable/customer_support"
-            android:title="Customer Support" />
     </group>
 
 
