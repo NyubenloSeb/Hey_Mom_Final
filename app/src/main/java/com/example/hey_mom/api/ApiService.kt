@@ -188,5 +188,8 @@ interface ApiService {
         @Field("administered_on") administeredOn: String,
         @Field("notes") notes: String?
     ): Response<ApiResponse>
+
+    @GET("location/get_all_locations.php")
+    suspend fun getAllLocations(): Response<List<LocationService>>
 }
 

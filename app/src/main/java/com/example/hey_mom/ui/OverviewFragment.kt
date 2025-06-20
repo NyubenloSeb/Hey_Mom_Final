@@ -392,6 +392,10 @@ class OverviewFragment : Fragment() {
                         val intent = Intent(requireContext(), Vaccine_Activity::class.java)
                         startActivity(intent)
                     }
+                    R.id.location -> {
+                        val intent = Intent(requireContext(), LocationActivity::class.java)
+                        startActivity(intent)
+                    }
 
                 }
                 drawerLayout.closeDrawer(GravityCompat.START)

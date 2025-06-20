@@ -37,10 +37,11 @@
             android:layout_marginBottom="16dp"
             android:text="Pending"
             android:textColor="@color/white"
+            app:chipBackgroundColor="@color/purple2"
             android:textAppearance="?attr/textAppearanceLabelLarge"
-            app:chipBackgroundColor="@color/purple"
+            android:background="@drawable/stat_background"
             app:chipStrokeWidth="0dp"
-             />
+            style="@style/Widget.Material3.Chip.Filter" />
 
         <!-- Due Date with improved styling -->
         <LinearLayout
@@ -74,9 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Mark as Complete"
+            android:backgroundTint="@color/purple"
             android:textColor="@color/white"
-            app:backgroundTint="@color/purple2"
-
             android:textAppearance="?attr/textAppearanceLabelLarge"
             app:iconGravity="textStart"
             app:cornerRadius="12dp"

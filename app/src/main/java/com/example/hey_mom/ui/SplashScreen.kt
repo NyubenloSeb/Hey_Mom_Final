@@ -1,7 +1,9 @@
 package com.example.hey_mom.ui
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hey_mom.R
@@ -22,4 +24,20 @@ class SplashScreen : AppCompatActivity() {
 
         videoView.start()
     }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1001) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted - can post notifications
+            } else {
+                // Show rationale or direct to settings
+                Toast.makeText(this, "Notification permission is required", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 }

@@ -40,6 +40,15 @@ class Signup : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (!isPasswordStrong(password)) {
+                Toast.makeText(
+                    this,
+                    "Password must be at least 6 characters, contain letters and numbers",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
             viewModel.register(name, email, password, "Parent", null)
         }
 
@@ -58,7 +67,11 @@ class Signup : AppCompatActivity() {
             finish()
         }
     }
+
+    // Helper function to check password strength
+    private fun isPasswordStrong(password: String): Boolean {
+        val hasLetter = password.any { it.isLetter() }
+        val hasDigit = password.any { it.isDigit() }
+        return password.length >= 6 && hasLetter && hasDigit
+    }
 }
-
-
-
