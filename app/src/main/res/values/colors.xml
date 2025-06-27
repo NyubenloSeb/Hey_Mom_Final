@@ -18,6 +18,8 @@
     <color name="stroke_light">#E0E0E0</color>
     <color name="button_primary">#FF9800</color>
     <color name="fab_primary">#FF9800</color>
+    <color name="primary_color">#2196F3</color>
+    <color name="secondary_color">#757575</color>
     <color name="icon_primary">#FF9800</color>
     <color name="ripple_light">#FFCC80</color>
     <!-- Weather Background Colors -->
