@@ -24,6 +24,15 @@ interface ApiService {
         @Field("contact_info") contactInfo: String?
     ): Response<ApiResponse>
 
+    @FormUrlEncoded
+    @POST("user/update_profile.php")
+    suspend fun updateProfile(
+        @Field("user_id") userId: Int,
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("contact_info") contactInfo: String
+    ): Response<ApiResponse>
+
     /** Child (Baby) Management **/
     @FormUrlEncoded
     @POST("baby/add_baby.php")

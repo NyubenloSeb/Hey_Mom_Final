@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Hey_Mom"
         tools:targetApi="31">
         <activity
+            android:name=".ui.EditProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.emergency"
             android:exported="false" />
         <activity

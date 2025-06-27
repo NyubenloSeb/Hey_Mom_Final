@@ -99,6 +99,7 @@
 
             <!-- Edit Profile Option -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/editProfileCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
@@ -170,6 +171,7 @@
 
             <!-- Settings Option -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/settingsCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
@@ -243,6 +245,7 @@
 
             <!-- Help & Support Option -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/helpSupportCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
