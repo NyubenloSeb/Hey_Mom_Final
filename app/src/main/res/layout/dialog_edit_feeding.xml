@@ -1,26 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp" android:orientation="vertical"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
 
-    <EditText android:id="@+id/etEditFeedingTime"
-        android:hint="Time (yyyy-MM-dd HH:mm:ss)"
+    <!-- Feeding Time Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditFeedingTime"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/baseline_access_time_24"
+        app:startIconContentDescription="Time icon"
+        app:hintEnabled="true"
+        app:startIconTint="@color/purple2"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
-    <EditText android:id="@+id/etEditFeedingType"
-        android:hint="Feeding Type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditFeedingTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="      Time (yyyy-MM-dd HH:mm:ss)"
+            android:inputType="datetime" />
 
-    <EditText android:id="@+id/etEditQuantity"
-        android:hint="Quantity (ml)"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText android:id="@+id/etEditFeedingNotes"
-        android:hint="Notes"
+    <!-- Feeding Type Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditFeedingType"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/child"
+        app:startIconContentDescription="Feeding type icon"
+        app:hintEnabled="true"
+        app:startIconTint="@color/purple2"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditFeedingType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="      Feeding Type"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Quantity Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/baseline_scale_24"
+        app:startIconContentDescription="Quantity icon"
+        app:startIconTint="@color/purple2"
+        app:suffixText="ml"
+        app:hintEnabled="true"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="      Quantity"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Feeding Notes Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditFeedingNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/note_edit"
+        app:startIconContentDescription="Notes icon"
+        app:startIconTint="@color/purple2"
+        app:hintEnabled="true"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditFeedingNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="     Notes"
+            android:inputType="textMultiLine"
+            android:maxLines="3" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

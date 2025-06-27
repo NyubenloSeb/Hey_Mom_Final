@@ -1,20 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp" android:orientation="vertical"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <EditText android:id="@+id/etEditSleepStart"
-        android:hint="Sleep Start (yyyy-MM-dd HH:mm:ss)"
+    <!-- Sleep Start Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditSleepStart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/baseline_access_time_24"
+        app:startIconContentDescription="Sleep start icon"
+        app:hintEnabled="true"
+        app:startIconTint="@color/purple2"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
-    <EditText android:id="@+id/etEditSleepEnd"
-        android:hint="Sleep End (yyyy-MM-dd HH:mm:ss)"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditSleepStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="      Sleep Start (yyyy-MM-dd HH:mm:ss)"
+            android:inputType="datetime" />
 
-    <EditText android:id="@+id/etEditSleepNotes"
-        android:hint="Notes"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Sleep End Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditSleepEnd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/baseline_access_time_24"
+        app:startIconContentDescription="Sleep end icon"
+        app:hintEnabled="true"
+        app:startIconTint="@color/purple2"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditSleepEnd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="      Sleep End (yyyy-MM-dd HH:mm:ss)"
+            android:inputType="datetime" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Sleep Notes Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditSleepNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/note_edit"
+        app:startIconContentDescription="Notes icon"
+        app:hintEnabled="true"
+        app:startIconTint="@color/purple2"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditSleepNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="     Notes"
+            android:inputType="textMultiLine"
+            android:maxLines="3" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

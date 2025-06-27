@@ -1,20 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp" android:orientation="vertical"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <EditText android:id="@+id/etEditDiaperTime"
-        android:hint="Change Time (yyyy-MM-dd HH:mm:ss)"
+    <!-- Change Time Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditDiaperTime"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/baseline_access_time_24"
+        app:startIconContentDescription="Time icon"
+        app:startIconTint="@color/purple2"
+        app:hintEnabled="true"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
-    <EditText android:id="@+id/etEditCondition"
-        android:hint="Condition (e.g., Wet)"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditDiaperTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="      Change Time (yyyy-MM-dd HH:mm:ss)"
+            android:inputType="datetime" />
 
-    <EditText android:id="@+id/etEditDiaperNotes"
-        android:hint="Notes"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Condition Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditCondition"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/water"
+        app:startIconContentDescription="Condition icon"
+        app:hintEnabled="true"
+        app:startIconTint="@color/purple2"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="      Condition (e.g., Wet)"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Notes Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEditDiaperNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@drawable/note_edit"
+        app:startIconContentDescription="Notes icon"
+        app:startIconTint="@color/purple2"
+        app:hintEnabled="true"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEditDiaperNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="      Notes"
+            android:inputType="textMultiLine"
+            android:maxLines="3" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>
